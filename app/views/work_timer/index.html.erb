@@ -1,0 +1,10 @@
+<h1>WorkTimer#index</h1>
+<p>Find me in app/views/work_timer/index.html.erb</p>
+<% if TimerEntry.exists? %>
+    <% TimerEntry.find_each do |entry| %>
+        <div>
+            <%= entry.start %>
+            <%= entry.created_at %>
+        </div>   
+    <% end %>
+<% end %>
