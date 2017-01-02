@@ -15,6 +15,7 @@ ActiveRecord::Schema.define(version: 20161230161932) do
 
   create_table "timer_entries", force: :cascade do |t|
     t.boolean  "start"
+    t.integer  "seconds"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

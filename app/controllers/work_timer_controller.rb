@@ -6,12 +6,12 @@ class WorkTimerController < ApplicationController
   end
   
   def stop
-    if params[:secret] == "so_secret"
-      TimerEntry.create!(start: false)
+    if params[:time].to_f > 0
+      TimerEntry.create!(start: false, seconds: params[:time])
     end
   end
   
   def index
-    
+    @entries = TimerEntry.get_table_entries
   end
 end

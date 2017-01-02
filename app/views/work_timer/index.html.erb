@@ -1,10 +1,86 @@
-<h1>WorkTimer#index</h1>
-<p>Find me in app/views/work_timer/index.html.erb</p>
-<% if TimerEntry.exists? %>
-    <% TimerEntry.find_each do |entry| %>
-        <div>
-            <%= entry.start %>
-            <%= entry.created_at %>
-        </div>   
-    <% end %>
-<% end %>
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h1>Chuck's Work Timer!</h1>
+        </div>
+        <div class="panel-body">
+            <% entryCount = 51 %>
+            <% @entries.each do %>
+                <div id="columnchart_values<%=entryCount%>"></div>
+                <% entryCount -= 1 %>
+            <% end %>
+
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+    google.charts.load("current", {packages:['corechart']});
+    google.charts.setOnLoadCallback(drawCharts);
+    function drawCharts() {
+        weekCount = 0;
+        <% @entries.each do |week| %>
+            chartDiv = "columnchart_values" + weekCount;
+            dayVals = [];
+            <% if week != nil %>
+                <% week.each do |day| %>
+                    <% if day != nil %>
+                        dayVals.push(parseFloat(<%=day%>) / 60);
+                    <% else %>
+                        dayVals.push(0);
+                    <% end %>
+                <% end %>
+                drawChart(weekCount, dayVals, chartDiv);
+            <% end %>
+            weekCount++;
+            
+        <% end %>
+         
+    }
+    function drawChart(week, entry, chartDiv) {
+        
+      var data = google.visualization.arrayToDataTable([
+        ["Day", "Time", { role: "style" } ],
+        ["Sunday", entry[0], "red"],
+        ["Monday", entry[1], "orange"],
+        ["Tuesday", entry[2], "yellow"],
+        ["Wednesday", entry[3], "green"],
+        ["Thursday", entry[4], "blue"],
+        ["Friday", entry[5], "purple"],
+        ["Saturday", entry[6], "red"]
+      ]);
+    
+      var view = new google.visualization.DataView(data);
+      view.setColumns([0, 1,
+                       { calc: "stringify",
+                         sourceColumn: 1,
+                         type: "string",
+                         role: "annotation" },
+                       2]);
+    
+      var options = {
+        title: "Week of " + getDateOfWeek(week, 2017).toDateString().substring(4),
+        width: 1000,
+        height: 400,
+        bar: {groupWidth: "95%"},
+        legend: 'left',
+        vAxis: {
+            viewWindow: {
+                min: 0,
+                max: 12
+            },
+            ticks: [0, 4, 8, 12] // display labels every 25
+        }
+      };
+      var chart = new google.visualization.ColumnChart(document.getElementById(chartDiv));
+      chart.draw(view, options);
+    }
+    
+    function getDateOfWeek(w, y) {
+        var d = (1 + (w - 1) * 7); // 1st of January + 7 days for each week
+    
+        return new Date(y, 0, d);
+    }    
+</script>
