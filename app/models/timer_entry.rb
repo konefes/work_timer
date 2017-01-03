@@ -37,6 +37,7 @@ class TimerEntry < ActiveRecord::Base
     end
     
     def weekday
-        self.created_at.strftime('%w')
+        ret = self.created_at - 6.hours
+        return ret.strftime('%w')
     end
 end
