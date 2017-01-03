@@ -1,15 +1,15 @@
 <div class="container">
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h1>Chuck's Work Timer!</h1>
-        </div>
-        <div class="panel-body">
+    <!--<div class="panel panel-default" style="min-width: 1000;">-->
+    <!--    <div class="panel-heading">-->
+            <h1 style="text-align: center;">Chuck's Work Timer!</h1>
+        <!--</div>-->
+        <!--<div class="panel-body">-->
             <% entryCount = 51 %>
             <% @entries.each do %>
                 <div id="columnchart_values<%=entryCount%>"></div>
                 <% entryCount -= 1 %>
             <% end %>
-        </div>
+        <!--</div>-->
     </div>
 </div>
 
