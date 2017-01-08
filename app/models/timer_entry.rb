@@ -25,15 +25,18 @@ class TimerEntry < ActiveRecord::Base
     
     
     def year
-        self.created_at.strftime('%Y')
+        ret = self.created_at - 6.hours
+        return ret.strftime('%Y')
     end
     
     def month
-        self.created_at.strftime('%m')
+        ret = self.created_at - 6.hours
+        return ret.strftime('%m')
     end
     
     def week
-        self.created_at.strftime('%U')
+        ret = self.created_at - 6.hours
+        return ret.strftime('%U')
     end
     
     def weekday
