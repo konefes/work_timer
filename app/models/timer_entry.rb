@@ -21,6 +21,7 @@ class TimerEntry < ActiveRecord::Base
         
         puts "----------------"
         puts week_arr.to_s
+        puts TimerEntry.all
         return week_arr
     end
     
