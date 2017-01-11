@@ -21,7 +21,9 @@ class TimerEntry < ActiveRecord::Base
         
         puts "----------------"
         puts week_arr.to_s
-        puts TimerEntry.all
+        TimerEntry.all.each do |entry| 
+            puts entry.created_at.in_time_zone("Central Time (US & Canada)").to_s
+        end
         return week_arr
     end
     
