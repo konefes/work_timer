@@ -12,6 +12,7 @@ class TimerEntry < ActiveRecord::Base
                         weekday_arr[day.to_f] += entry.seconds.to_f
                     else
                         weekday_arr[day.to_f] = entry.seconds.to_f
+                        puts "array entry created: " + entry.created_at.to_s
                     end
                 end
             end
@@ -25,29 +26,31 @@ class TimerEntry < ActiveRecord::Base
     
     
     def year
-        ret = self.created_at + TimerEntry.time_diff.hours #- 6.hours
+        ret = self.created_at.in_time_zone("Central Time (US & Canada)") #+ TimerEntry.time_diff.hours #- 6.hours
         return ret.strftime('%Y')
     end
     
     def month
-        ret = self.created_at + TimerEntry.time_diff.hours #- 6.hours
+        ret = self.created_at.in_time_zone("Central Time (US & Canada)") #+ TimerEntry.time_diff.hours #- 6.hours
         return ret.strftime('%m')
     end
     
     def week
-        ret = self.created_at + TimerEntry.time_diff.hours #- 6.hours
+        ret = self.created_at.in_time_zone("Central Time (US & Canada)") #+ TimerEntry.time_diff.hours #- 6.hours
         return ret.strftime('%U')
     end
     
     def weekday
-        ret = self.created_at + TimerEntry.time_diff.hours #- 6.hours
+        ret = self.created_at.in_time_zone("Central Time (US & Canada)") #+ TimerEntry.time_diff.hours #- 6.hours
         puts ret
         return ret.strftime('%w')
     end
     
     def self.time_diff
-        current_time = Time.now.to_f * 1000 * 3600
-        central_time = Time.now.in_time_zone("Central Time (US & Canada)").to_f * 1000 * 3600
+        current_time = Time.now.to_f / 1000 / 3600
+        puts "current_time: " + current_time.to_s
+        central_time = Time.now.in_time_zone("Central Time (US & Canada)").to_f / 1000 / 3600
+        puts "central_time: " + central_time.to_s
         time_diff = current_time - central_time
         puts "time_diff: " + time_diff.to_s
         return time_diff
