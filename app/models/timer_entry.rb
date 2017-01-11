@@ -25,22 +25,22 @@ class TimerEntry < ActiveRecord::Base
     
     
     def year
-        ret = self.created_at + TimerEntry.time_diff.minutes #- 6.hours
+        ret = self.created_at - 6.hours
         return ret.strftime('%Y')
     end
     
     def month
-        ret = self.created_at + TimerEntry.time_diff.minutes #- 6.hours
+        ret = self.created_at - 6.hours
         return ret.strftime('%m')
     end
     
     def week
-        ret = self.created_at + TimerEntry.time_diff.minutes #- 6.hours
+        ret = self.created_at - 6.hours
         return ret.strftime('%U')
     end
     
     def weekday
-        ret = self.created_at + TimerEntry.time_diff.minutes #- 6.hours
+        ret = self.created_at - 6.hours
         puts ret
         return ret.strftime('%w')
     end
