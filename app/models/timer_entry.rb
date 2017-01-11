@@ -46,9 +46,9 @@ class TimerEntry < ActiveRecord::Base
     end
     
     def self.time_diff
-        current_time = Time.now
-        central_time = Time.now.in_time_zone("Central Time (US & Canada)")
-        time_diff = ((current_time - central_time) * 24 * 60).to_i
+        current_time = Time.now.to_f * 1000 * 3600
+        central_time = Time.now.in_time_zone("Central Time (US & Canada)").to_f * 1000 * 3600
+        time_diff = current_time - central_time
         puts "time_diff: " + time_diff.to_s
         return time_diff
     end
