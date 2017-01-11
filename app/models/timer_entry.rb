@@ -19,11 +19,11 @@ class TimerEntry < ActiveRecord::Base
             week_arr[week.to_f] = weekday_arr
         end
         
-        puts "----------------"
-        puts week_arr.to_s
-        TimerEntry.all.each do |entry| 
-            puts entry.created_at.in_time_zone("Central Time (US & Canada)").to_s
-        end
+        # puts "----------------"
+        # puts week_arr.to_s
+        # TimerEntry.all.each do |entry| 
+        #     puts entry.created_at.in_time_zone("Central Time (US & Canada)").to_s
+        # end
         return week_arr
     end
     
@@ -45,17 +45,17 @@ class TimerEntry < ActiveRecord::Base
     
     def weekday
         ret = self.created_at.in_time_zone("Central Time (US & Canada)") #+ TimerEntry.time_diff.hours #- 6.hours
-        puts ret
+        # puts ret
         return ret.strftime('%w')
     end
     
-    def self.time_diff
-        current_time = Time.now.to_f / 1000 / 3600
-        puts "current_time: " + current_time.to_s
-        central_time = Time.now.in_time_zone("Central Time (US & Canada)").to_f / 1000 / 3600
-        puts "central_time: " + central_time.to_s
-        time_diff = current_time - central_time
-        puts "time_diff: " + time_diff.to_s
-        return time_diff
-    end
+    # def self.time_diff
+    #     current_time = Time.now.to_f / 1000 / 3600
+    #     puts "current_time: " + current_time.to_s
+    #     central_time = Time.now.in_time_zone("Central Time (US & Canada)").to_f / 1000 / 3600
+    #     puts "central_time: " + central_time.to_s
+    #     time_diff = current_time - central_time
+    #     puts "time_diff: " + time_diff.to_s
+    #     return time_diff
+    # end
 end
