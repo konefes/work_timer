@@ -58,9 +58,14 @@
                          type: "string",
                          role: "annotation" },
                        2]);
+                       
+      var totalHours = 0;
+      for (i = 0; i <= 6; i++) {
+          totalHours += entry[i];
+      }
     
       var options = {
-        title: "Week of " + getDateOfWeek(week, 2017).toDateString().substring(4),
+        title: "Week of " + getDateOfWeek(week, 2017).toDateString().substring(4) + ", Total: " + totalHours + " hours",
         width: 1000,
         height: 400,
         bar: {groupWidth: "95%"},
