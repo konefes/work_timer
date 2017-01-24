@@ -44,7 +44,8 @@
         ["Day", "Time", { role: "style" } ],
         ["Sunday", entry[0], "red"],
         ["Monday", entry[1], "orangered"],
-        ["Tuesday", entry[2], "orange"],
+        // ["Tuesday", entry[2], "orange"],
+        ["Tuesday", entry[2], getColor(entry[2])],
         ["Wednesday", entry[3], "darkorange"],
         ["Thursday", entry[4], "goldenrod"],
         ["Friday", entry[5], "gold"],
@@ -87,4 +88,25 @@
     
         return new Date(y, 0, d);
     }    
+    
+    function getColor(hours) {
+        ratio = hours / 8;
+        alert(hours);
+        if (ratio > 1) {
+            ratio = 1;
+        }
+        var color2 = 'f92707';
+        var color1 = '37ba00';
+        var hex = function(x) {
+            x = x.toString(16);
+            return (x.length == 1) ? '0' + x : x;
+        };
+        
+        var r = Math.ceil(parseInt(color1.substring(0,2), 16) * ratio + parseInt(color2.substring(0,2), 16) * (1-ratio));
+        var g = Math.ceil(parseInt(color1.substring(2,4), 16) * ratio + parseInt(color2.substring(2,4), 16) * (1-ratio));
+        var b = Math.ceil(parseInt(color1.substring(4,6), 16) * ratio + parseInt(color2.substring(4,6), 16) * (1-ratio));
+        
+        newColor = hex(r) + hex(g) + hex(b);
+        return "#" + newColor;
+    }
 </script>
