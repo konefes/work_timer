@@ -96,15 +96,15 @@
     }    
     
     function getColor(hours) {
-        ratio = hours / 8;
+        ratio = hours / 10;
         if (ratio > 1) {
             ratio = 1;
         }
-        // Low
+        // Low red
         var color2 = 'ff0000';
-        // Mid
+        // Mid yellow
         var color1 = 'fff200';
-        // High
+        // High green
         var color0 = '3fff00';
         var hex = function(x) {
             x = x.toString(16);
