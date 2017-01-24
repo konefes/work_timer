@@ -42,14 +42,20 @@
         
       var data = google.visualization.arrayToDataTable([
         ["Day", "Time", { role: "style" } ],
-        ["Sunday", entry[0], "red"],
-        ["Monday", entry[1], "orangered"],
+        // ["Sunday", entry[0], "red"],
+        // ["Monday", entry[1], "orangered"],
         // ["Tuesday", entry[2], "orange"],
+        // ["Wednesday", entry[3], "darkorange"],
+        // ["Thursday", entry[4], "goldenrod"],
+        // ["Friday", entry[5], "gold"],
+        // ["Saturday", entry[6], "yellow"]
+        ["Sunday", entry[0], getColor(entry[0])],
+        ["Monday", entry[1], getColor(entry[1])],
         ["Tuesday", entry[2], getColor(entry[2])],
-        ["Wednesday", entry[3], "darkorange"],
-        ["Thursday", entry[4], "goldenrod"],
-        ["Friday", entry[5], "gold"],
-        ["Saturday", entry[6], "yellow"]
+        ["Wednesday", entry[3], getColor(entry[3])],
+        ["Thursday", entry[4], getColor(entry[4])],
+        ["Friday", entry[5], getColor(entry[5])],
+        ["Saturday", entry[6], getColor(entry[6])]
       ]);
     
       var view = new google.visualization.DataView(data);
@@ -91,7 +97,6 @@
     
     function getColor(hours) {
         ratio = hours / 8;
-        alert(hours);
         if (ratio > 1) {
             ratio = 1;
         }
