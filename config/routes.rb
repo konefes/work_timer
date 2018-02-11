@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
   
-  get 'work_timer/start'
+  get 'work_timer/log' => 'work_timer#log'
   get 'work_timer/stop'
   get 'work_timer/index'
 
